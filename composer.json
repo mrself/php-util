@@ -1,0 +1,13 @@
+{
+  "name": "mrself/php-util",
+  "autoload": {
+    "psr-4": {
+      "Mrself\\Util\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Mrself\\Util\\Tests\\": "tests/"
+    }
+  }
+}
