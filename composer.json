@@ -1,5 +1,5 @@
 {
-  "name": "mrself/php-util",
+  "name": "mrself/util",
   "autoload": {
     "psr-4": {
       "Mrself\\Util\\": "src/"
