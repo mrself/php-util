@@ -6,6 +6,10 @@ class ArrayUtil
 {
     public static function map(array $array, callable $cb): array
     {
-        return array_map($cb, array_keys($array), $array);
+        $map = [];
+        foreach ($array as $key => $value) {
+            $map[$key] = $cb($value, $key);
+        }
+        return $map;
     }
 }
