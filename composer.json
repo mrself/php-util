@@ -9,5 +9,8 @@
     "psr-4": {
       "Mrself\\Util\\Tests\\": "tests/"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.5"
   }
 }
