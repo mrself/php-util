@@ -12,4 +12,14 @@ class ArrayUtil
         }
         return $map;
     }
+
+	public static function pull(array &$array, string $key, $default = null)
+	{
+		if (array_key_exists($key, $array)) {
+			$value = $array[$key];
+			unset($array[$key]);
+			return $value;
+		}
+		return $default;
+	}
 }
