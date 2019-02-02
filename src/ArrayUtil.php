@@ -2,6 +2,8 @@
 
 namespace Mrself\Util;
 
+use Mrself\Util\ArrayUtil\NotFoundException;
+
 class ArrayUtil
 {
     public static function map(array $array, callable $cb): array
@@ -21,5 +23,23 @@ class ArrayUtil
 			return $value;
 		}
 		return $default;
+	}
+
+    /**
+     * @param array $array
+     * @param array $keys
+     * @return array
+     * @throws NotFoundException
+     */
+    public static function only(array $array, array $keys = [])
+    {
+        $result = [];
+        foreach ($keys as $key) {
+            if (!array_key_exists($key, $array)) {
+                throw new NotFoundException($array, $key);
+            }
+            $result[$key] = $array[$key];
+        }
+        return $result;
 	}
 }
