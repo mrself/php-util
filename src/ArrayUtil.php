@@ -25,6 +25,23 @@ class ArrayUtil
 		return $default;
 	}
 
+
+    /**
+     * @param array $array
+     * @param string $key
+     * @return mixed
+     * @throws NotFoundException
+     */
+    public static function strictPull(array &$array, string $key)
+    {
+        if (!array_key_exists($key, $array)) {
+            throw new NotFoundException($array, $key);
+        }
+        $value = $array[$key];
+        unset($array[$key]);
+        return $value;
+    }
+
     /**
      * @param array $array
      * @param array $keys
