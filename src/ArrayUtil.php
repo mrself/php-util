@@ -78,4 +78,13 @@ class ArrayUtil
         }
         return $result;
     }
+
+    public static function isAssoc(array $array, bool $full = true): bool
+    {
+        $count = count(array_filter(array_keys($array), 'is_string'));
+        if ($full) {
+            return $count === count($array);
+        }
+        return $count > 0;
+    }
 }
