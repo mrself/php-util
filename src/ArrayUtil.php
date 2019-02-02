@@ -42,4 +42,23 @@ class ArrayUtil
         }
         return $result;
 	}
+
+    /**
+     * @param array $array
+     * @param $default
+     * @param array $keys
+     * @return array
+     */
+    public static function defaultOnly(array $array, $default, array $keys = [])
+    {
+        $result = [];
+        foreach ($keys as $key) {
+            if (array_key_exists($key, $array)) {
+                $result[$key] = $array[$key];
+            } else {
+                $result[$key] = $default;
+            }
+        }
+        return $result;
+    }
 }
