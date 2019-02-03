@@ -53,13 +53,31 @@ class GetTest extends TestCase
 
     public function testItReturnsValueIfFirstPathKeyIsValue()
     {
-        $actual = PathUtil::get([], 'value.1');
+        $actual = PathUtil::get([], 'value:1');
         $this->assertEquals('1', $actual);
     }
 
     public function testItReturnsDefaultValueIfFirstPathDoesNotContainerValue()
     {
-        $actual = PathUtil::get([], 'value.');
+        $actual = PathUtil::get([], 'value:');
         $this->assertEquals('', $actual);
+    }
+
+    public function testValueHasIntTypeIfItIsProvidedInPath()
+    {
+        $actual = PathUtil::get([], 'value:1:int');
+        $this->assertEquals(1, $actual);
+    }
+
+    public function testValueHasFloatTypeIfItIsProvidedInPath()
+    {
+        $actual = PathUtil::get([], 'value:1.1:float');
+        $this->assertEquals(1.1, $actual);
+    }
+
+    public function testValueHasBoolTypeIfItIsProvidedInPath()
+    {
+        $actual = PathUtil::get([], 'value:true:bool');
+        $this->assertEquals(true, $actual);
     }
 }

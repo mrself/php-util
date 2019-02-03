@@ -8,13 +8,19 @@ class PathUtil
 {
     public static function get($source, $path, $defaultValue = null)
     {
+        if (is_string($path) && substr($path, 0, strlen('value')) === 'value') {
+            $path = explode(':', $path);
+            if (array_key_exists(2, $path)) {
+                $result = $path[1];
+                settype($result, $path[2]);
+                return $result;
+            }
+            return $path[1];
+        }
         if (!is_array($path)) {
             $path = explode('.', $path);
         }
         $originalPath = $path;
-        if ($path[0] === 'value') {
-            return $path[1];
-        }
         while (null !== ($key = array_shift($path))) {
             if (is_object($source)) {
                 $source = $source->$key;
