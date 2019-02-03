@@ -50,4 +50,16 @@ class GetTest extends TestCase
         $e = new PathUtil\InvalidSourceException('', ['a', 'b']);
         $this->assertContains('["a","b"]', $e->getMessage());
     }
+
+    public function testItReturnsValueIfFirstPathKeyIsValue()
+    {
+        $actual = PathUtil::get([], 'value.1');
+        $this->assertEquals('1', $actual);
+    }
+
+    public function testItReturnsDefaultValueIfFirstPathDoesNotContainerValue()
+    {
+        $actual = PathUtil::get([], 'value.');
+        $this->assertEquals('', $actual);
+    }
 }

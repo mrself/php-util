@@ -12,6 +12,9 @@ class PathUtil
             $path = explode('.', $path);
         }
         $originalPath = $path;
+        if ($path[0] === 'value') {
+            return $path[1];
+        }
         while (null !== ($key = array_shift($path))) {
             if (is_object($source)) {
                 $source = $source->$key;
