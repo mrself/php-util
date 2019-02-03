@@ -32,4 +32,22 @@ class GetTest extends TestCase
         $actual = PathUtil::get($source, 'a.b');
         $this->assertEquals(1, $actual);
     }
+
+    public function testGetThrowsExceptionIfSourceHasInvalidType()
+    {
+        try {
+            PathUtil::get('', 'a.b');
+        } catch (PathUtil\InvalidSourceException $e) {
+            $this->assertEquals(['a', 'b'], $e->getPath());
+            $this->assertEquals('', $e->getSource());
+            return;
+        }
+        $this->assertTrue(false);
+    }
+
+    public function testInvalidSourceExceptionStringifyPathInMessage()
+    {
+        $e = new PathUtil\InvalidSourceException('', ['a', 'b']);
+        $this->assertContains('["a","b"]', $e->getMessage());
+    }
 }

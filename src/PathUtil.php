@@ -2,6 +2,8 @@
 
 namespace Mrself\Util;
 
+use Mrself\Util\PathUtil\InvalidSourceException;
+
 class PathUtil
 {
     public static function get($source, $path, $defaultValue = null)
@@ -9,6 +11,7 @@ class PathUtil
         if (!is_array($path)) {
             $path = explode('.', $path);
         }
+        $originalPath = $path;
         while (null !== ($key = array_shift($path))) {
             if (is_object($source)) {
                 $source = $source->$key;
@@ -19,6 +22,8 @@ class PathUtil
                     $source = $defaultValue;
                     break;
                 }
+            } else {
+                throw new InvalidSourceException($source, $originalPath);
             }
         }
         return $source;
