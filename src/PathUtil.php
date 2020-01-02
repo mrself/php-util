@@ -37,4 +37,9 @@ class PathUtil
         }
         return $source;
     }
+
+    public static function set($source, $path, $value)
+    {
+        
+    }
 }

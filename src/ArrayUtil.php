@@ -25,6 +25,13 @@ class ArrayUtil
 		return $default;
 	}
 
+    public static function defaultGet(array $array, $key, $default = null)
+	{
+        if (array_key_exists($key, $array)) {
+            return $array[$key];
+        }
+        return $default;
+	}
 
     /**
      * @param array $array
