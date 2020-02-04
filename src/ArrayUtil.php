@@ -94,4 +94,20 @@ class ArrayUtil
         }
         return $count > 0;
     }
+
+    /**
+     * Checks if any element of $someArray exists in $array
+     * @param array $array
+     * @param array $someArray
+     * @return bool
+     */
+    public static function arraySome(array $array, array $someArray): bool
+    {
+        foreach ($array as $item) {
+            if (in_array($item, $someArray)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
