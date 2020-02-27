@@ -110,4 +110,11 @@ class ArrayUtil
         }
         return false;
     }
+
+    public static function removeElementsByKeys(array &$array, array $keys)
+    {
+        foreach ($keys as $key) {
+            unset($array[$key]);
+        }
+    }
 }
