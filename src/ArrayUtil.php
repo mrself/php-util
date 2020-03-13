@@ -15,6 +15,19 @@ class ArrayUtil
         return $map;
     }
 
+    /**
+     * Returns filtered $array where each key exists in $checkIn
+     * @param array $array
+     * @param array $checkIn
+     * @return array
+     */
+    public static function getInArray(array $array, array $checkIn)
+    {
+        return array_filter($array, function (string $option) use ($checkIn) {
+            return array_key_exists($option, $checkIn);
+        });
+    }
+
 	public static function pull(array &$array, string $key, $default = null)
 	{
 		if (array_key_exists($key, $array)) {
