@@ -10,15 +10,15 @@ class StringUtil
 
     public static function camelize(
         string $origin,
-        string $separator = '-',
         bool $firstUpperLetter = false
     ): string {
         if (static::$enableCache && isset(static::$camelizeCache[$origin])) {
             return static::$camelizeCache[$origin];
         }
 
-        $string = ucwords($origin, $separator);
-        $string = str_replace($separator, '', $string);
+        $string = str_replace(['-', '_', ' '], ' ', $origin);
+        $string = ucwords($string);
+        $string = str_replace(' ', '', $string);
 
         if (!$firstUpperLetter) {
             $string = lcfirst($string);
@@ -30,11 +30,10 @@ class StringUtil
 
     public static function camelizeIgnoreCache(
         string $origin,
-        string $separator = '-',
         bool $firstUpperLetter = false
     ): string {
         static::disableCache();
-        $result = static::camelize($origin, $separator, $firstUpperLetter);
+        $result = static::camelize($origin, $firstUpperLetter);
         static::$enableCache = true;
 
         return $result;

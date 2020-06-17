@@ -9,13 +9,13 @@ class CamelizeTest extends TestCase
 {
     public function testItRemovesSpacesAndMakesFirstUpperCased()
     {
-        $actual = StringUtil::camelize('a b', ' ');
+        $actual = StringUtil::camelize('a b');
         $this->assertEquals('aB', $actual);
     }
 
     public function testItRemovesDashes()
     {
-        $actual = StringUtil::camelize('a-b', '-');
+        $actual = StringUtil::camelize('a-b');
         $this->assertEquals('aB', $actual);
     }
 
@@ -27,7 +27,13 @@ class CamelizeTest extends TestCase
 
     public function testItCanMakeTheFirstCharacterUpperCased()
     {
-        $actual = StringUtil::camelize('ab', '-', true);
+        $actual = StringUtil::camelize('ab', true);
         $this->assertEquals('Ab', $actual);
+    }
+
+    public function testItRemovesUnderscores()
+    {
+        $actual = StringUtil::camelize('a_b');
+        $this->assertEquals('aB', $actual);
     }
 }
