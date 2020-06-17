@@ -20,9 +20,9 @@ class CamelizeBench
 
     public function benchSimple()
     {
-        $separator = '-';
-        $string = ucwords('a-b-c', $separator);
-        $string = str_replace($separator, '', $string);
+        $string = str_replace(['-', '_', ' '], ' ', 'a-b-c');
+        $string = ucwords($string);
+        $string = str_replace(' ', '', $string);
         lcfirst($string);
     }
 
