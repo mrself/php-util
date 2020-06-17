@@ -39,4 +39,10 @@ class CamelizeBench
     {
         StringUtil::camelize('a-b-c');
     }
+
+    public function benchStringUtilIgnoreCache()
+    {
+        StringUtil::disableCache();
+        StringUtil::camelize('a-b-c');
+    }
 }
