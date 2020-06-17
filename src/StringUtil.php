@@ -8,8 +8,11 @@ class StringUtil
 
     private static $enableCache = true;
 
-    public static function camelize($origin, $separator = '-', $firstUpperLetter = false)
-    {
+    public static function camelize(
+        string $origin,
+        string $separator = '-',
+        bool $firstUpperLetter = false
+    ): string {
         if (static::$enableCache && isset(static::$camelizeCache[$origin])) {
             return static::$camelizeCache[$origin];
         }
